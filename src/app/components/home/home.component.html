@@ -1,0 +1,53 @@
+@if (isAdmin) {
+  <div>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Título"
+      [(ngModel)]="dataForm.title"
+      name="title"
+    />
+    <textarea
+      class="form-control"
+      placeholder="Descripción"
+      [(ngModel)]="dataForm.description"
+      name="description"
+    ></textarea>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary" type="button" (click)="saveRegister()">
+        Guardar
+      </button>
+    </div>
+  </div>
+} @else {
+  <h2>{{dataForm.title}}</h2>
+  <hr>
+  <p>{{dataForm.description}}</p>
+}
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalMessages"
+  tabindex="-1"
+  aria-labelledby="modalMessagesLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="modalFormLabel">{{
+          modalMessage
+        }}</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

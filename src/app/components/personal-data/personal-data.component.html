@@ -1,0 +1,156 @@
+<h2>Datos personales</h2>
+<hr />
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Campo</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nombre</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.name }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Nombre"
+          name="name"
+        />
+      </td>
+      }
+    </tr>
+    <tr>
+      <td>Apellidos</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.lastName }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Apellidos"
+          name="lastName"
+        />
+      </td>
+      }
+    </tr>
+    <tr>
+      <td>Fecha de nacimiento</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.birthday }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Fecha de nacimiento"
+          name="birthday"
+        />
+      </td>
+      }
+    </tr>
+    <tr>
+      <td>Correo electrónico</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.email }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Correo electrónico"
+          name="email"
+        />
+      </td>
+      }
+    </tr>
+    <tr>
+      <td>Nacionalidad</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.nationality }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Nacionalidad"
+          name="nationality"
+        />
+      </td>
+      }
+    </tr>
+    <tr>
+      <td>Posición</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.job }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Posición"
+          name="job"
+        />
+      </td>
+      }
+    </tr>
+    <tr>
+      <td>Disponibilidad para viajar</td>
+      @if (!isAdmin) {
+        <td>{{ dataForm.availabilityToTravel }}</td>
+      }
+      @if (isAdmin) {
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Disponibilidad para viajar"
+          name="availabilityToTravel"
+        />
+      </td>
+      }
+    </tr>
+  </tbody>
+</table>
+
+@if (isAdmin) {
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary">Guardar</button>
+  </div>
+}
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalMessages"
+  tabindex="-1"
+  aria-labelledby="modalMessagesLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="modalFormLabel">{{
+          modalMessage
+        }}</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

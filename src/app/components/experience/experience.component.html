@@ -1,0 +1,156 @@
+<div class="row">
+  <div class="col">
+    <h2>Experiencia</h2>
+  </div>
+  <div class="col d-flex justify-content-end">
+    @if (isAdmin) {
+      <button class="btn btn-primary" type="button" (click)="openModalNew()">
+        Nuevo
+      </button>
+    }
+  </div>
+</div>
+<hr />
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Empresa</th>
+      <th scope="col">Lugar</th>
+      <th scope="col">Puesto</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Actividades</th>
+      @if (isAdmin) {
+        <th scope="col">Acciones</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalMessages"
+  tabindex="-1"
+  aria-labelledby="modalMessagesLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="modalFormLabel">{{
+          modalMessage
+        }}</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal formulario-->
+<div
+  class="modal fade"
+  id="modalForm"
+  tabindex="-1"
+  aria-labelledby="modalFormLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalFormLabel">
+          {{ idDocument ? "Actualizar" : "Agregar" }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="">Empresa</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.name"
+          name="name"
+        />
+        <label for="">Lugar</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.place"
+          name="career"
+        />
+        <label for="">Puesto</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.job"
+          name="period"
+        />
+        <label for="">Fecha</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.date"
+          name="status"
+        />
+        <label for="">Actividades</label>
+        <textarea
+          class="form-control"
+          [(ngModel)]="dataForm.activities"
+          name="status"
+        ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveRegister()">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal eliminar-->
+<div
+  class="modal fade"
+  id="modalDelete"
+  tabindex="-1"
+  aria-labelledby="modalDeleteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalDeleteLabel">Eliminar</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">¿Esta seguro de eliminarlo?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteRegister()">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

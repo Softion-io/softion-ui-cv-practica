@@ -1,0 +1,170 @@
+<div class="row">
+  <div class="col">
+    <h2>Estudios</h2>
+  </div>
+  <div class="col d-flex justify-content-end">
+    @if (isAdmin) {
+      <button class="btn btn-primary" type="button" (click)="openModalNew()">
+        Nuevo
+      </button>
+    }
+  </div>
+</div>
+<hr />
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Escuela</th>
+      <th scope="col">Carrera</th>
+      <th scope="col">Periodo</th>
+      <th scope="col">Estatus</th>
+      @if (isAdmin) {
+        <th scope="col">Acciones</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for(register of registerList; track registerList) {
+    <tr>
+      <td>{{ register.name }}</td>
+      <td>{{ register.career }}</td>
+      <td>{{ register.period }}</td>
+      <td>{{ register.status }}</td>
+      @if (isAdmin) {
+        <td>
+          <i
+            class="bi bi-pencil-square orange"
+            (click)="openModalEdit(register)"
+          ></i>
+          <i class="bi bi-trash3-fill red" (click)="openModalDelete(register)"></i>
+        </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalMessages"
+  tabindex="-1"
+  aria-labelledby="modalMessagesLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="modalFormLabel">{{
+          modalMessage
+        }}</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal formulario-->
+<div
+  class="modal fade"
+  id="modalForm"
+  tabindex="-1"
+  aria-labelledby="modalFormLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalFormLabel">
+          {{ idDocument ? "Actualizar" : "Agregar" }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="">Escuela</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.name"
+          name="name"
+        />
+        <label for="">Carrera</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.career"
+          name="career"
+        />
+        <label for="">Periodo</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.period"
+          name="period"
+        />
+        <label for="">Estatus</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="dataForm.status"
+          name="status"
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveRegister()">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal eliminar-->
+<div
+  class="modal fade"
+  id="modalDelete"
+  tabindex="-1"
+  aria-labelledby="modalDeleteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalDeleteLabel">
+          Eliminar
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de eliminarlo?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteRegister()">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

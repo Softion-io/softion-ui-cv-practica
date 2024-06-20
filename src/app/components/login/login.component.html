@@ -1,0 +1,42 @@
+<div class="contenedor">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h3 class="card-title">Iniciar sesión</h3>
+      <input
+        class="form-control"
+        type="text"
+        (change)="onChangeInpEmail($event)"
+      />
+      <input
+        class="form-control"
+        type="password"
+        (change)="onChangeInpPass($event)"
+      />
+      <button class="btn btn-primary" type="button">
+        @if(!isSumbiting) { Ingresar } @else {
+        <div class="spinner-grow" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        }
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalErrorLabel">Error</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{errorMessage}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

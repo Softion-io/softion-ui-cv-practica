@@ -1,0 +1,114 @@
+<div class="contenedor">
+  <div class="side-bar shadow">
+    <div class="photo">
+      <div class="contenedor-photo">
+        @if (isAdmin) {
+        <div class="contenedor-change-photo">
+          <img
+            src="assets/img/camera.png"
+            class="img-fluid"
+            alt="..."
+            (click)="onUploadPhoto()"
+          />
+        </div>
+        }
+        <img
+          [src]="urlPhoto || 'assets/img/user.png'"
+          class="img-fluid"
+          alt="..."
+          (dblclick)="dblClickShowLogin()"
+        />
+      </div>
+    </div>
+    <div>
+      <h3>{{ name }}</h3>
+      <h6>{{ position }}</h6>
+    </div>
+    <ul class="list-group">
+      @for(menu of menuList; track menu;) {
+      <li
+        class="list-group-item"
+        [ngClass]="{ active: selectedMenu === $index }"
+        (click)="redirectTo($index)"
+      >
+        {{ menu.label }}
+      </li>
+      }
+    </ul>
+    @if (urlCv) {
+    <div class="d-grid gap-2 pt-2">
+      <button class="btn btn-primary" type="button" (click)="donwloadCV()">
+        Descargar CV
+      </button>
+    </div>
+    } @if (showButtonLogin) {
+    <div class="d-grid gap-2 pt-2">
+      <button class="btn btn-success" type="button" (click)="redirectToLogin()">
+        Iniciar sesión
+      </button>
+    </div>
+    } @if (isAdmin && urlCv) {
+    <hr />
+    <div class="d-grid gap-2 pt-2">
+      <button class="btn btn-info" type="button" (click)="onUploadCV()">
+        Cargar CV
+      </button>
+    </div>
+    <div class="d-grid gap-2 pt-2">
+      <button class="btn btn-danger" type="button" (click)="deleteRegister()">
+        Eliminar CV
+      </button>
+    </div>
+    } @if (isAdmin) {
+    <hr />
+    <div class="d-grid gap-2 pt-2">
+      <button class="btn btn-danger" type="button" (click)="logout()">
+        Cerrar sesión
+      </button>
+    </div>
+    }
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<input
+  id="inputFilePhoto"
+  class="inp-file"
+  type="file"
+  accept=".png, .jpg"
+  (change)="changeUploadPhoto()"
+/>
+<input
+  class="inp-file"
+  id="inputFileCV"
+  type="file"
+  accept=".pdf"
+  (change)="changeUploadCV()"
+/>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalMessages"
+  tabindex="-1"
+  aria-labelledby="modalMessagesLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fs-5" id="modalFormLabel">{{
+          modalMessage
+        }}</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
